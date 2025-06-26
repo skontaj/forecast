@@ -2,6 +2,12 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\WeatherController;
+use App\Http\Controllers\ForecastController;
+
+
+Route::get('/weather', [WeatherController::class, 'index'])->name('weather.index')->middleware(['auth', 'verified']);
+Route::get('/forecast/{city}', [ForecastController::class, 'show'])->name('forecast.show')->middleware(['auth', 'verified']);
 
 Route::get('/', function () {
     return view('welcome');
