@@ -16,7 +16,7 @@ class Weather extends Model
 
     public function city()
     {
-        return $this->belongsTo(City::class);
+        return $this->belongsTo(City::class); // relacija više prema jednom, jer više vremenskih podataka pripada jednom gradu
     }
     
 }

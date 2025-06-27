@@ -15,7 +15,7 @@ class City extends Model
 
     public function forecasts()
     {
-        return $this->hasMany(Forecast::class);
+        return $this->hasMany(Forecast::class); // relacija jedan prema više, jer ima više prognoza za jedan grad
     }
 
 }
