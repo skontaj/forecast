@@ -18,10 +18,13 @@ class ForecastSeeder extends Seeder
 
         foreach ($cities as $city) {
             for ($i = 0; $i < 5; $i++) {
+                $weatherType = fake()->randomElement(['sunny', 'rainy', 'snowy']);
                 Forecast::create([
                     'city_id' => $city->id,
-                    'temperature' => fake()->randomFloat(2, -10, 40), // temperatura između -10 i 40 °C
+                    'temperature' => fake()->randomFloat(2, -10, 40),
                     'date' => fake()->dateTimeBetween('-1 month', '+1 month')->format('Y-m-d'),
+                    'weather_type' => $weatherType,
+                    'probability' => in_array($weatherType, ['rainy', 'snowy']) ? fake()->numberBetween(1, 100) : null,
                 ]);
             }
         }

@@ -12,5 +12,7 @@ class Forecast extends Model
         'city_id',
         'temperature',
         'date',
+        'weather_type',
+        'probability',
     ];
 }

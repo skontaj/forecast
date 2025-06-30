@@ -4,6 +4,8 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\WeatherController;
 use App\Http\Controllers\ForecastController;
+use App\Http\Controllers\AdminWeatherController;
+use App\Http\Controllers\AdminForecastController;
 
 
 Route::get('/weather', [WeatherController::class, 'index'])->name('weather.index')->middleware(['auth', 'verified']);
@@ -12,6 +14,17 @@ Route::get('/forecast/{city}', [ForecastController::class, 'show'])->name('forec
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/admin/weather', function () {
+    return view('admin.weather.index');
+})->middleware(['auth', 'verified'])->name('admin.weather.index');
+Route::put('/admin/weather/update', [AdminWeatherController::class, 'update'])->name('admin.weather.update')->middleware(['auth', 'verified']);
+
+Route::get('/admin/forecast', function () {
+    return view('admin.forecast.index');
+})->middleware(['auth', 'verified'])->name('admin.forecast.index');
+
+Route::post('/admin/forecast/create', [AdminForecastController::class, 'create'])->name('admin.forecast.create')->middleware(['auth', 'verified']);
 
 Route::get('/dashboard', function () {
     return view('dashboard');
