@@ -8,6 +8,7 @@ class ForecastHelper
         'sunny' => 'fa-sun',
         'rainy' => 'fa-cloud-showers-heavy',
         'snowy' => 'fa-snowflake',
+        'cloudy' => 'fa-cloud',
     ];
 
     const TEMPERATURE_COLORS = [
