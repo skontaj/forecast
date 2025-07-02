@@ -56,7 +56,13 @@
                                     <li class="flex items-center justify-between p-2 bg-gray-100 dark:bg-gray-700 rounded shadow text-sm">
                                         <div>
                                             <div><strong>{{ $forecast->date }}</strong></div>
-                                            <div>{{ number_format($forecast->temperature, 2) }} °C, {{ ucfirst($forecast->weather_type) }}</div>
+                                            @php
+                                                $tempColor = \App\Http\ForecastHelper::getTemperatureColor($forecast->temperature);
+                                                $weatherIcon = \App\Http\ForecastHelper::getWeatherIcon($forecast->weather_type);
+                                            @endphp
+                                            <div>
+                                                <span class="{{ $tempColor }}">{{ number_format($forecast->temperature, 2) }} °C</span> - <i class="fas {{ $weatherIcon }}"></i>  {{ ucfirst($forecast->weather_type) }}
+                                            </div>
                                         </div>
                                         <div class="w-20 text-right">
                                             @if($forecast->probability)

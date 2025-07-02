@@ -38,9 +38,12 @@
 
                     <div class="mt-8 space-y-4">
                         @foreach(\App\Models\Weather::all() as $weather)
+                            @php
+                                $tempColor = \App\Http\ForecastHelper::getTemperatureColor($weather->temperature);
+                            @endphp
                             <div class="p-4 rounded bg-gray-100 dark:bg-gray-700 shadow">
                                 <div><strong>City:</strong> <span class="text-gray-800 dark:text-gray-200">{{ $weather->city->name }}</span></div>
-                                <div><strong>Temperature:</strong> <span class="text-blue-700 dark:text-blue-300">{{ number_format($weather->temperature, 2) }} °C</span></div>
+                                <div><strong>Temperature:</strong> <span class="{{ $tempColor }}">{{ number_format($weather->temperature, 2) }} °C</span></div>
                                 <div><strong>Updated at:</strong> <span class="text-gray-600 dark:text-gray-400">{{ $weather->updated_at->format('d.m.Y H:i') }}</span></div>
                             </div>
                         @endforeach
